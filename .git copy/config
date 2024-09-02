@@ -1,0 +1,31 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/laura-pf/project-promo-Y-module-3-team-1.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[branch "class_icon"]
+	remote = origin
+	merge = refs/heads/class_icon
+[branch "dev"]
+	remote = origin
+	merge = refs/heads/dev
+[branch "design"]
+	remote = origin
+	merge = refs/heads/design
+[branch "design-1"]
+	remote = origin
+	merge = refs/heads/design-1
+[branch "localStorage"]
+	remote = origin
+	merge = refs/heads/localStorage
+[branch "routes"]
+	remote = origin
+	merge = refs/heads/routes
