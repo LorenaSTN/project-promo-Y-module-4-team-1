@@ -8,6 +8,8 @@ import Title from "../images/titulo.png";
 import localStorage from "../services/localStorage";
 import Modal from "./Modal";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import Projects from "./Projects";
+import ButtonHeader from "./ButtonHeader";
 
 function App() {
   const navigate = useNavigate();
@@ -139,14 +141,20 @@ function App() {
           <p className="hero__text">
             Escaparate en línea para recoger ideas a través de la tecnología
           </p>
-          <a className="button" href="./">
-            Ver proyectos
-          </a>
         </section>
 
         <Routes>
           <Route
             path="/"
+            element={
+              <>
+                <Projects />
+              </>
+            }
+          />
+
+          <Route
+            path="/form"
             element={
               <>
                 <Preview
