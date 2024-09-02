@@ -56,7 +56,6 @@ function Form(props) {
 
   return (
     <>
-      <ButtonHeader text="Ver projectos" />
       <form action="" className="addForm">
         <h2 className="title">Información</h2>
         <fieldset className="addForm__group">
