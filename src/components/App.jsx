@@ -33,6 +33,7 @@ function App() {
 
   const [cardUrl, setCardUrl] = useState("");
   const [error, setError] = useState(null);
+  const [listProjects, setListProjects] = useState([]);
 
   function changeValue(value, id) {
     setProject({
