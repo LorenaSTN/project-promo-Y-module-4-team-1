@@ -1,5 +1,43 @@
-.projects_section {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.projects {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  grid-template-rows: 500px 500px;
+  justify-content: space-between;
+  gap: 60px;
+  width: 100%;
+  grid-column: span 2;
+
+  .card:nth-child(6n + 1) {
+    background-color: #77dafc;
+
+    .card__projectTitle--text {
+      background-color: #77dafc;
+    }
+  }
+  .card:nth-child(6n + 2) {
+    background-color: #94f395;
+
+    .card__projectTitle--text {
+      background-color: #94f395;
+    }
+  }
+  .card:nth-child(6n + 3) {
+    background-color: #f69914;
+    .card__projectTitle--text {
+      background-color: #f69914;
+    }
+  }
+  .card:nth-child(6n + 4) {
+    background-color: #d899d7;
+
+    .card__projectTitle--text {
+      background-color: #d899d7;
+    }
+  }
+  .card:nth-child(6n + 5) {
+    background-color: #fc25a0;
+  }
+  .card:nth-child(6n + 6) {
+    background-color: #e9f553;
+  }
 }
