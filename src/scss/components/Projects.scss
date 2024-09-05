@@ -7,6 +7,11 @@
   width: 100%;
   grid-column: span 2;
 
+  @media screen and (max-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .card:nth-child(6n + 1) {
     background-color: #77dafc;
 
