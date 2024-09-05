@@ -36,8 +36,15 @@
   }
   .card:nth-child(6n + 5) {
     background-color: #fc25a0;
+
+    .card__projectTitle--text {
+      background-color: #fc25a0;
+    }
   }
   .card:nth-child(6n + 6) {
     background-color: #e9f553;
+    .card__projectTitle--text {
+      background-color: #e9f553;
+    }
   }
 }
