@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for macos14 (x86_64)
 --
--- Host: localhost    Database: setproject
+-- Host: sql.freedb.tech    Database: freedb_setProject
 -- ------------------------------------------------------
--- Server version	9.0.1
+-- Server version	8.0.39-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,7 +29,7 @@ CREATE TABLE `author` (
   `photo` varchar(1000) NOT NULL,
   `description` varchar(400) NOT NULL,
   PRIMARY KEY (`idAuthor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `author` (
 
 LOCK TABLES `author` WRITE;
 /*!40000 ALTER TABLE `author` DISABLE KEYS */;
+INSERT INTO `author` VALUES (1,'Laura','Estudiante','https://img.freepik.com/premium-vector/cartoon-girl-student-character-drawing-illustration-clipart-kawaii_51194-280.jpg','Estudiante Bootcamp'),(2,'Mark Zuckerberg','Computer programmer','https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg','American computer programmer'),(3,'Jeff Bezos','CEO of Amazon, Investor, Businessperson','https://static1.srcdn.com/wordpress/wp-content/uploads/2021/02/Amazon-logo-with-CEO-Jeff-Bezos.jpg','American entrepreneur who played a key role in the growth of e-commerce'),(4,'Reed Hastings','Entrepreneur,Businessperson','https://s.yimg.com/ny/api/res/1.2/L941reTczz4VknQGAJeC7w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/es/tomatazos_56/473eb1d680728eca27c5d12b96ec3497','Co-founder and executive chairman of Netflix, and is on a number of boards and non-profit organizations'),(5,'Brian Chesky','Computer scientist, Businessperson','https://static.startuptalky.com/2021/11/Airbnb-Founders-StartupTalky.jpg','Co-founder and Chief Executive Officer of Airbnb and sets the vision and strategy for the company');
 /*!40000 ALTER TABLE `author` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-02 12:50:06
+-- Dump completed on 2024-09-05 11:42:57
