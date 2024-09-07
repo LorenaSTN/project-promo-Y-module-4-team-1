@@ -14,3 +14,7 @@ const serverPort = 5001;
 server.listen(serverPort, () => {
   console.log(`Server listening at: http://localhost:${serverPort}`);
 });
+
+//Servidor estático
+const staticServer = "./web";
+server.use(express.static(staticServer));
