@@ -1,5 +1,3 @@
-import imageAuthor from "../images/chicamegafono.jpg";
-
 function DetailProject(props) {
   return (
     <article className="card">
@@ -14,7 +12,7 @@ function DetailProject(props) {
           className="card__autorPhoto"
           style={{
             backgroundImage: `url(${
-              props.previewProject.photo || imageAuthor
+              props.previewProject.photo || props.imageAuthor
             })`,
             repeat: "repeat",
           }}

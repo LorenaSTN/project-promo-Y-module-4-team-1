@@ -4,8 +4,8 @@ import DetailProject from "./DetailProject";
 function Projects(props) {
   return (
     <div className="projects">
-      {props.listProjects.map((project) => {
-        return <DetailProject key={project.id} previewProject={project} />;
+      {props.listProjects.map((project, index) => {
+        return <DetailProject key={index} previewProject={project} />;
       })}
     </div>
   );
