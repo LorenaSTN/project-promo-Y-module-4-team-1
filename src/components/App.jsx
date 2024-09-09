@@ -34,6 +34,7 @@ function App() {
   const [cardUrl, setCardUrl] = useState("");
   const [error, setError] = useState(null);
   const [listProjects, setListProjects] = useState([]);
+  const [buttonSave, setButtonSave] = useState("Guardar proyecto");
 
   function changeValue(value, id) {
     setProject({
@@ -85,35 +86,53 @@ function App() {
       setError("Todos los campos son obligatorios.");
       navigate("/postit");
       return;
-    }
+    } else {
+      const newProject = {
+        name: project.name,
+        slogan: project.slogan,
+        technologies: project.technologies,
+        desc: project.desc,
+        author: project.author,
+        job: project.job,
+        demo: project.demo,
+        repo: project.repo,
+        image: project.image,
+        photo: project.photo,
+      };
 
-    console.log(project);
-    fetch("https://dev.adalab.es/api/projectCard", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(project),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Error de petición al servidor: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCardUrl(data.cardURL);
-        setError(null); // Resetea el error en caso de éxito
-        navigate("/postit");
-      })
-      .catch((error) => {
-        console.error("Error de petición al servidor:", error);
-        setError(
-          "Hubo un error al enviar la petición. Por favor, intentalo de nuevo."
-        );
-        navigate("/postit");
-      });
+      setError("");
+      setListProjects([...listProjects, newProject]);
+      setButtonSave("¡Guardado!");
+    }
   }
+
+  //   console.log(project);
+  //   fetch("https://dev.adalab.es/api/projectCard", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(project),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`Error de petición al servidor: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setCardUrl(data.cardURL);
+  //       setError(null); // Resetea el error en caso de éxito
+  //       navigate("/postit");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error de petición al servidor:", error);
+  //       setError(
+  //         "Hubo un error al enviar la petición. Por favor, intentalo de nuevo."
+  //       );
+  //       navigate("/postit");
+  //     });
+  // }
 
   //BOTON DE RESET
   function handleClickReset() {
@@ -130,6 +149,7 @@ function App() {
       image: "",
       photo: "",
     });
+    setButtonSave("Guardar Proyecto");
     localStorage.clear();
   }
 
@@ -150,7 +170,7 @@ function App() {
             path="/"
             element={
               <>
-                <Projects />
+                <Projects addedProject={listProjects} />
               </>
             }
           />
@@ -172,6 +192,7 @@ function App() {
                   onChangeImageProject={handleImageProject}
                   onChangePhotoUser={handlePhotoUser}
                   onSubmitProject={handleSaveProject}
+                  buttonSave={buttonSave}
                 />
               </>
             }

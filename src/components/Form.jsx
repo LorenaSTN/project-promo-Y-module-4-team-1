@@ -186,7 +186,7 @@ function Form(props) {
             onClick={handleClickSave}
             className="button button--color--green"
           >
-            Guardar proyecto
+            {props.buttonSave}
           </button>
         </fieldset>
       </form>
