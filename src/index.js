@@ -21,6 +21,8 @@ async function getDBConnection() {
 server.use(cors());
 server.use(express.json({ limit: "25mb" }));
 
+server.set("view engine", "ejs");
+
 //Arrancar en un puerto:
 const serverPort = 5001;
 server.listen(serverPort, () => {
@@ -70,10 +72,20 @@ server.post("/api/project", async (req, res) => {
   connection.end();
   res.json({
     success: true,
-    cardUrl: "url...",
+    cardUrl: `http://localhost/5001/project/${projectsResult.insertId}`,
   });
 });
 
-//Servidor estático
-// const staticServer = "./web";
-// server.use(express.static(staticServer));
+server.get("/project/:idProject", async (req, res) => {
+  const connection = await getDBConnection();
+  const id = req.params.idProject;
+  const querySql =
+    "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor AND projects.idProject = ?";
+  const [result] = await connection.query(querySql, [id]);
+  connection.end();
+  res.render("project");
+});
+
+// Servidor estático
+const staticServerPath = "src/public-react";
+server.use(express.static(staticServerPath));
