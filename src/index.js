@@ -46,13 +46,11 @@ server.get("/projects/list", async (req, res) => {
 server.post("/api/project", async (req, res) => {
   const connection = await getDBConnection();
 
-  const authorQuery =
-    "INSERT INTO author (name, job, photo, description) VALUES (?, ?, ?, ?) ";
+  const authorQuery = "INSERT INTO author (name, job, photo) VALUES (?, ?, ?) ";
   const [authorResult] = await connection.query(authorQuery, [
     req.body.name,
     req.body.job,
     req.body.photo,
-    req.body.description,
   ]);
   const idNewAuthor = authorResult.insertId;
 
