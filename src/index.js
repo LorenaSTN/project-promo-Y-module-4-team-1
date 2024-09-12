@@ -1,60 +1,21 @@
 //Importar los modulos de NPM que necesito
 const express = require("express");
 const cors = require("cors");
+const mysql = require("mysql2/promise");
 
 //Crear el servidor.
 const server = express();
 
-const dataProjects = [
-  {
-    name: "FACEBOOK",
-    slogan: "Conectándote mejor con las páginas y grupos que te interesan",
-    technologies: "React, PHP",
-    desc: "Conéctate con amigos, familiares y otras personas que conoces. Comparte fotos y vídeos, envía mensajes y recibe actualizaciones.",
-    author: "Mark Zuckerberg",
-    job: "Programador informático ",
-    demo: "https://www.facebook.com/",
-    repo: "https://github.com/facebook",
-    photo:
-      "https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg",
-  },
-  {
-    name: "AMAZON",
-    slogan: "Trabaja duro, diviértete, haz historia.",
-    technologies: "React, Java, MySQL",
-    desc: "Amazon.com, Inc., que opera como Amazon, es una empresa de tecnología multinacional estadounidense que se dedica al comercio electrónico, la computación en la nube, la publicidad en línea, la transmisión digital y la inteligencia artificial.",
-    author: "Jeff Bezos",
-    job: "Inversor, Empresario",
-    demo: "https://www.amazon.com",
-    repo: "https://github.com/amzn",
-    photo:
-      "https://s1.abcstatics.com/abc/www/multimedia/economia/2022/11/14/jeff-bezos-dos-R6qfA3h8JvbvrOUThLhOl2L-1200x840@abc.jpg",
-  },
-  {
-    name: "NETFLIX",
-    slogan: "Mira lo que sigue",
-    technologies: "Python, Node.js, and React",
-    desc: "El servicio distribuye principalmente películas y programas de televisión originales y adquiridos de varios géneros, y está disponible internacionalmente en varios idiomas.",
-    author: "Reed Hastings",
-    job: "Emprendedor, Empresario",
-    demo: "https://www.netflix.com/us-es/",
-    repo: "https://github.com/Netflix",
-    photo:
-      "https://static.ffx.io/images/$zoom_0.9966%2C$multiply_0.5855%2C$ratio_1%2C$width_1059%2C$x_412%2C$y_0/t_crop_custom/q_86%2Cf_auto/bf34f87d48de29657936871e250036288ee88b6b",
-  },
-  {
-    name: "Airbnb",
-    slogan: "Pertenece a cualquier lugar",
-    technologies: "JavaScript, GitHub, React, Java, and MySQL",
-    desc: "Es un mercado en línea que conecta a personas que desean alquilar sus casas con personas que buscan alojamiento en lugares específicos.",
-    author: "Brian Chesky",
-    job: "Informático, Empresario",
-    demo: "https://www.airbnb.es/",
-    repo: "https://github.com/airbnb",
-    photo:
-      "https://imageio.forbes.com/specials-images/imageserve/5d8ac4ab22254b0008e16383/0x0.jpg?format=jpg&crop=2407,2409,x719,y857,safe&height=416&width=416&fit=bounds",
-  },
-];
+async function getDBConnection() {
+  const connection = await mysql.createConnection({
+    host: "sql.freedb.tech",
+    user: "freedb_admin_Lorena",
+    password: "U9%9s?K%8aCC6AC",
+    database: "freedb_setProject",
+  });
+  await connection.connect();
+  return connection;
+}
 
 //Configurar el servidor.
 server.use(cors());
@@ -66,11 +27,53 @@ server.listen(serverPort, () => {
   console.log(`Server listening at: http://localhost:${serverPort}`);
 });
 
+server.get("/projects/list", async (req, res) => {
+  const connection = await getDBConnection();
+
+  const squlQuery = "SELECT * FROM projects";
+  const [projectsResult] = await connection.query(squlQuery);
+
+  connection.end();
+
+  res.status(200).json({
+    status: true,
+    message: projectsResult,
+  });
+});
+
+server.post("/api/project", async (req, res) => {
+  const connection = await getDBConnection();
+
+  const authorQuery =
+    "INSERT INTO author (name, job, photo, description) VALUES (?, ?, ?, ?) ";
+  const [authorResult] = await connection.query(authorQuery, [
+    req.body.name,
+    req.body.job,
+    req.body.photo,
+    req.body.description,
+  ]);
+  const idNewAuthor = authorResult.insertId;
+
+  const projectQuery =
+    "INSERT INTO projects (name, slogan, desc, technologies, photo, repo, demo, fk_author) VALUES(?,?,?,?,?,?,?,?)";
+  const [projectsResult] = await connection.query(projectQuery, [
+    req.body.name,
+    req.body.slogan,
+    req.body.desc,
+    req.body.technologies,
+    req.body.photo,
+    req.body.repo,
+    req.body.demo,
+    idNewAuthor,
+  ]);
+  console.log(projectsResult);
+  connection.end();
+  res.json({
+    success: true,
+    cardUrl: "url...",
+  });
+});
+
 //Servidor estático
 // const staticServer = "./web";
 // server.use(express.static(staticServer));
-
-server.get("/projects/list", (req, res) => {
-  console.log("info db");
-  res.json(dataProjects);
-});

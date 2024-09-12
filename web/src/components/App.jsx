@@ -31,6 +31,8 @@ function App() {
     })
   );
 
+  console.log("proyecto", project);
+
   const [cardUrl, setCardUrl] = useState("");
   const [error, setError] = useState(null);
   const [listProjects, setListProjects] = useState([]);
@@ -39,7 +41,8 @@ function App() {
     fetch("http://localhost:5001/projects/list")
       .then((response) => response.json())
       .then((data) => {
-        setListProjects(data);
+        console.log(data);
+        setListProjects(data.message);
       });
   }, []);
 
@@ -96,7 +99,7 @@ function App() {
     }
 
     console.log(project);
-    fetch("https://dev.adalab.es/api/projectCard", {
+    fetch("http://localhost:5001/api/project", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
