@@ -3,10 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Project </title>
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+   <link rel="stylesheet" href="/src/public-css/main.css" />
   </head>
   <body>
     <%- include ("./partials/header") %>
-    <h1>hola</h1>
+    <section class="preview"></section>
+  <div
+  class="projectImage"
+  style="background-image: url('<%= project.image %>'); background-repeat: repeat;"
+>
+    <div class="card__pin"></div>
+  </div>
+
+  <article class="card">
+    <div class="card__pin"></div>
+    <div class="card__pin card__pin--right"></div>
+    <h2 class="card__projectTitle">
+      <span class="card__projectTitle--text">Proyecto personal</span>
+    </h2>
+
+    <div class="card__autor">
+      <div
+        class="card__autorPhoto"
+        style="
+          background-image: url('<%= project.photo %>');
+          background-repeat: repeat;
+        "
+      ></div>
+      <p class="card__job"><%= project.job %></p>
+      <h3 class="card__name"><%= project.author %></h3>
+    </div>
+
+    <div class="card__project">
+      <h3 class="card__name-project"><%= project.name %></h3>
+      <p class="card__slogan"><%= project.slogan %></p>
+      <h3 class="card__descriptionTitle">Descripción del proyecto</h3>
+      <p class="card__description"><%= project.desc %></p>
+
+      <div class="card__technicalInfo">
+        <p class="card__technologies"><%= project.technologies %></p>
+        <div class="container-icons">
+          <a
+            class="icon icon__www"
+            href="<%= project.demo %>"
+            title="Haz click para ver el proyecto online"
+            target="_blank"
+          >
+            <i class="fa-regular fa-globe"></i>
+          </a>
+          <a
+            class="icon icon__github"
+            href="<%= project.repo %>"
+            title="Haz click para ver el código del proyecto"
+            target="_blank"
+          >
+            <i class="fa-regular fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
   </body>
 </html>

@@ -1,0 +1,314 @@
+/* reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+fieldset {
+  border: 0;
+}
+/* 
+variables */
+
+:root {
+  font-size: 12px;
+  color: white; /* Reemplazar $color-white */
+
+  /* COLORS */
+  --color-black: #000000;
+  --color-black-80: rgba(0, 0, 0, 0.8);
+  --color-greyish-brown: #505050;
+  --color-greyish-brown-88: rgba(62, 62, 62, 0.88);
+  --color-dusk: #403a5f;
+  --color-greyish-brown-two: #575757;
+  --color-dark: #302c42;
+  --color-warm-grey: #909090;
+  --color-white: black; /* Note: This was 'black' instead of white in SCSS */
+  --color-dark-lilac: #8176af;
+  --color-white-50: rgba(255, 255, 255, 0.5);
+
+  /* FONTS */
+  --font-title-brand: 300 1.4rem "Gloria Hallelujah", sans-serif;
+  --font-title-biggest: bold 3rem "Gloria Hallelujah", sans-serif;
+  --font-title-big: bold 2rem "Gloria Hallelujah", sans-serif;
+  --font-title-medium: 300 1.5rem "Gloria Hallelujah", sans-serif;
+  --font-text-big: normal 1.2rem "Gloria Hallelujah", sans-serif;
+  --font-normal: normal 18px "Gloria Hallelujah", sans-serif;
+  --font-button: bold 1rem "Gloria Hallelujah", sans-serif;
+  --font-card-text: 300 0.8rem "Gloria Hallelujah", sans-serif;
+  --font-card-section: 300 0.8rem "Gloria Hallelujah", sans-serif;
+  --font-card-title: 500 1.2rem "Gloria Hallelujah", sans-serif;
+  --font-card-subtitle: 400 1.1rem "Gloria Hallelujah", sans-serif;
+  --font-card-tech: 500 1rem "Gloria Hallelujah", sans-serif;
+}
+
+:root {
+  font-size: 12px;
+  color: var(--color-white);
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+.container {
+  padding: 22px 22px 0 22px;
+  background-image: url(../images/cork1.jpeg);
+  background-repeat: repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    max-width: 980px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+    gap: 2rem;
+  }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  font: var(--font-title-big);
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    grid-column: span 2;
+  }
+}
+
+.hero__title {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .hero__title {
+    width: 90%;
+  }
+}
+
+.hero__text {
+  font: var(--font-title-medium);
+  text-align: center;
+  font-size: 14px;
+  width: 260px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .hero__text {
+    width: auto;
+    font: var(--font-title-medium);
+  }
+}
+
+.hero__button--link {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  margin-block: 8px;
+  padding: 5px 18px;
+  color: var(--color-white);
+  font: var(--font-button);
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-style: solid;
+  border-width: 1px;
+  border-image-source: linear-gradient(to bottom, #2a2a2a 0%, rgba(0, 0, 0, 0));
+  border-image-slice: 1;
+  border-radius: 20px;
+  background-color: var(--color-dark-lilac);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview .projectImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  outline: solid 1px pink;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+}
+
+.preview .card__pin {
+  height: 50px;
+  width: 50px;
+  left: 50%;
+  filter: hue-rotate(45deg);
+}
+
+.preview .card {
+  margin-inline: 10px;
+  transform: translateY(-45px);
+}
+
+@media (min-width: 768px) {
+  .preview .card {
+    margin-inline: 20px;
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  color: var(--color-black);
+  font: var(--font-card-text);
+  background-color: #ffeb3b; /* Color del Post-it */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding: 12px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 20px;
+  }
+}
+
+.card__pin {
+  background-image: url(../images/chincheta.png);
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+}
+
+.card__pin--right {
+  left: auto;
+  right: 0px;
+}
+
+.card__projectTitle {
+  grid-column: 1 / 3;
+  position: relative;
+  margin: 15px 10px 1rem 0;
+  text-align: center;
+  text-transform: capitalize;
+  display: inline;
+  font: var(--font-card-section);
+}
+
+.card__projectTitle::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  bottom: calc(50% - 1px);
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background-image: linear-gradient(
+    to right,
+    white,
+    #232323 15%,
+    var(--color-black),
+    #232323 85%,
+    white
+  );
+}
+
+.card__projectTitle--text {
+  position: relative;
+  padding-inline: 1em;
+  z-index: 1;
+  font: var(--font-card-title);
+  background-color: #ffeb3b;
+}
+
+.card__autor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .card__autor {
+    padding: 0 20px;
+  }
+}
+
+.card__autorPhoto {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  .card__autorPhoto {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.card__job {
+  margin-bottom: 0.2rem;
+}
+
+.card__name {
+  font: var(--font-card-title);
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.card__name-project {
+  font: var(--font-card-title);
+  margin-bottom: 0.2rem;
+}
+
+.card__project {
+  margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .card__project {
+    margin-left: 20px;
+  }
+}
+
+.card__slogan {
+  font: var(--font-card-subtitle);
+  margin-top: -0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.card__descriptionTitle {
+  font-weight: inherit;
+  text-transform: capitalize;
+}
+
+.card__technicalInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.card__technologies {
+  font: var(--font-card-tech);
+}

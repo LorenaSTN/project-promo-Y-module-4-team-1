@@ -32,10 +32,12 @@ server.listen(serverPort, () => {
 server.get("/projects/list", async (req, res) => {
   const connection = await getDBConnection();
 
-  const squlQuery = "SELECT * FROM projects";
+  const squlQuery =
+    "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor";
   const [projectsResult] = await connection.query(squlQuery);
 
   connection.end();
+  console.log(projectsResult);
 
   res.status(200).json({
     status: true,
@@ -46,27 +48,28 @@ server.get("/projects/list", async (req, res) => {
 server.post("/api/project", async (req, res) => {
   const connection = await getDBConnection();
 
-  const authorQuery = "INSERT INTO author (name, job, photo) VALUES (?, ?, ?) ";
+  const authorQuery =
+    "INSERT INTO author (author, job, photo) VALUES (?, ?, ?) ";
   const [authorResult] = await connection.query(authorQuery, [
-    req.body.name,
+    req.body.author,
     req.body.job,
     req.body.photo,
   ]);
   const idNewAuthor = authorResult.insertId;
 
   const projectQuery =
-    "INSERT INTO projects (name, slogan, desc, technologies, photo, repo, demo, fk_author) VALUES(?,?,?,?,?,?,?,?)";
+    "INSERT INTO projects (name, slogan, `desc`, technologies, image, repo, demo, fk_author) VALUES(?,?,?,?,?,?,?,?)";
   const [projectsResult] = await connection.query(projectQuery, [
     req.body.name,
     req.body.slogan,
     req.body.desc,
     req.body.technologies,
-    req.body.photo,
+    req.body.image,
     req.body.repo,
     req.body.demo,
     idNewAuthor,
   ]);
-  console.log(projectsResult);
+  console.log(authorResult);
   connection.end();
   res.json({
     success: true,
@@ -80,10 +83,15 @@ server.get("/project/:idProject", async (req, res) => {
   const querySql =
     "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor AND projects.idProject = ?";
   const [result] = await connection.query(querySql, [id]);
+
   connection.end();
-  res.render("project");
+  res.render("project", { project: result[0] });
 });
 
 // Servidor estático
 const staticServerPath = "src/public-react";
 server.use(express.static(staticServerPath));
+
+//servidor estatico css
+const stylesEngine = "src/public-css";
+server.use(express.static(stylesEngine));
