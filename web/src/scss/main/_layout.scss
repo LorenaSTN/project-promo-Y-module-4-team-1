@@ -17,10 +17,10 @@
 
 @media screen and (min-width: 768px) {
   .main {
-    max-width: 980px;
+    max-width: 1250px;
     margin-inline: auto;
     display: grid;
-    grid-template-columns: 6fr 5fr;
+    grid-template-columns: 8fr 8fr;
     gap: 2rem;
   }
 }
