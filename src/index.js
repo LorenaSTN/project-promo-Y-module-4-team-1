@@ -6,25 +6,26 @@ const mysql = require("mysql2/promise");
 //Crear el servidor.
 const server = express();
 
+//Configurar el servidor.
+server.use(cors());
+server.use(express.json({ limit: "25mb" }));
+require("dotenv").config();
+
+server.set("view engine", "ejs");
+
 async function getDBConnection() {
   const connection = await mysql.createConnection({
     host: "sql.freedb.tech",
-    user: "freedb_admin_Lorena",
-    password: "U9%9s?K%8aCC6AC",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: "freedb_setProject",
   });
   await connection.connect();
   return connection;
 }
 
-//Configurar el servidor.
-server.use(cors());
-server.use(express.json({ limit: "25mb" }));
-
-server.set("view engine", "ejs");
-
 //Arrancar en un puerto:
-const serverPort = 5001;
+const serverPort = process.env.PORT;
 server.listen(serverPort, () => {
   console.log(`Server listening at: http://localhost:${serverPort}`);
 });

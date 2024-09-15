@@ -1,7 +1,7 @@
 .projects {
   display: grid;
-  grid-template-columns: 500px 500px;
-  grid-template-rows: 500px 500px;
+  grid-template-columns: 550px 550px;
+  grid-template-rows: max-content;
   justify-content: space-between;
   gap: 60px;
   width: 100%;
@@ -10,6 +10,7 @@
   @media screen and (max-width: 1200px) {
     display: flex;
     flex-direction: column;
+    gap: 40px;
   }
 
   .card:nth-child(6n + 1) {
