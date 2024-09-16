@@ -4,7 +4,7 @@ function RouteProject(props) {
   return (
     <section className="preview route">
       <div
-        className="projectImage"
+        className="projectImage image-project-route"
         style={{
           backgroundImage: `url(${props.listProjects.image})`,
           backgroundRepeat: "repeat",

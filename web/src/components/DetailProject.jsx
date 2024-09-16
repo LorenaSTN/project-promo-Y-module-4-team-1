@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function DetailProject(props) {
   return (
-    <article className="card">
+    <article className="card card__listprojects">
       <Link className="card__link" to={`/${props.previewProject.name}`}>
         <div className="card__pin"></div>
         <div className="card__pin card__pin--right"></div>
