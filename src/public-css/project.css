@@ -1,0 +1,17 @@
+.preview .projectImage {
+  background-size: contain;
+
+  background-color: white;
+  aspect-ratio: initial;
+  height: 300px;
+  background-position: center;
+  margin: auto;
+  border: 30px solid white;
+}
+.preview .card {
+  transform: none;
+}
+.container {
+  min-height: 100vh;
+  padding-bottom: 30px;
+}
