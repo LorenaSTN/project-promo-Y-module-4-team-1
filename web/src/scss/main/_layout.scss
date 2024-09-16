@@ -111,6 +111,11 @@
   }
 }
 
+.route {
+  display: flex;
+  flex-direction: column;
+}
+
 .preview .card {
   margin-inline: 10px;
   transform: translateY(-45px);
@@ -121,9 +126,13 @@
 }
 
 .card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // grid-template-rows: auto 1fr;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   color: $color-black;
   font: $font-card-text;
