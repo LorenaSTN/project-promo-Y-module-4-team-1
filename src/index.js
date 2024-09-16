@@ -30,19 +30,26 @@ server.listen(serverPort, () => {
 });
 
 server.get("/projects/list", async (req, res) => {
-  const connection = await getDBConnection();
+  try {
+    const connection = await getDBConnection();
 
-  const squlQuery =
-    "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor";
-  const [projectsResult] = await connection.query(squlQuery);
+    const squlQuery =
+      "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor";
+    const [projectsResult] = await connection.query(squlQuery);
 
-  connection.end();
-  console.log(projectsResult);
+    connection.end();
+    console.log(projectsResult);
 
-  res.status(200).json({
-    status: true,
-    message: projectsResult,
-  });
+    res.status(200).json({
+      status: true,
+      message: projectsResult,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error.",
+    });
+  }
 });
 
 server.post("/api/project", async (req, res) => {
