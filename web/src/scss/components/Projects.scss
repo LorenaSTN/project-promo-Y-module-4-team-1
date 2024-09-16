@@ -1,3 +1,5 @@
+@import "../core/variables.scss";
+
 .projects {
   display: grid;
   grid-template-columns: 500px 500px;
@@ -52,4 +54,22 @@
       background-color: #e9f553;
     }
   }
+}
+
+.card__link {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+
+  color: $color-black;
+  font: $font-card-text;
+  text-decoration: none;
+  cursor: pointer;
+
+  // box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  // position: relative;
+  // padding: 12px;
+
+  // @media (min-width: 768px) {
+  //   padding: 20px;
 }

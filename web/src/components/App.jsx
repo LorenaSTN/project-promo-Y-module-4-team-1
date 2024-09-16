@@ -7,9 +7,17 @@ import Preview from "./Preview";
 import Title from "../images/titulo.png";
 import localStorage from "../services/localStorage";
 import Modal from "./Modal";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  matchPath,
+  useParams,
+} from "react-router-dom";
 import Projects from "./Projects";
 import ButtonHeader from "./ButtonHeader";
+import RouteProject from "./RouteProject";
 
 function App() {
   const navigate = useNavigate();
@@ -146,6 +154,13 @@ function App() {
     localStorage.clear();
   }
 
+  const { pathname } = useLocation();
+  const routeData = matchPath("/:nameProject", pathname);
+  const nameProject = routeData !== null ? routeData.params.nameProject : null;
+  const projectSelected = listProjects.find(
+    (proj) => proj.name === nameProject
+  );
+
   return (
     <div className="container">
       <Header />
@@ -193,6 +208,11 @@ function App() {
           <Route
             path="/postit"
             element={<Modal errorMessage={error} cardUrl={cardUrl} />}
+          ></Route>
+
+          <Route
+            path="/:nameProject"
+            element={<RouteProject listProjects={projectSelected} />}
           ></Route>
         </Routes>
         {/* {(cardUrl || error) && <Modal errorMessage={error} cardUrl={cardUrl} />} */}
