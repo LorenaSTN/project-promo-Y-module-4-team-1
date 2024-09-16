@@ -15,8 +15,8 @@ function Modal(props) {
           {isError ? (
             <>
               <p className="modal-text">{props.errorMessage}</p>
-              <Link to="/" className="modal-link">
-                Inicio
+              <Link to="/form" className="modal-link">
+                Volver al formulario
               </Link>
             </>
           ) : (
@@ -24,8 +24,8 @@ function Modal(props) {
               <p className="modal-text">
                 Puedes verla entrando <a href={props.cardUrl}>aquí</a>
               </p>
-              <Link to="/" className="modal-link">
-                Inicio
+              <Link to="/form" className="modal-link">
+                Volver al formulario
               </Link>
             </>
           )}
