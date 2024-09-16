@@ -55,9 +55,10 @@ variables */
   }
 }
 
-.container {
+body {
   padding: 22px 22px 0 22px;
-  background-image: url(../images/cork1.jpeg);
+  /* background-color: lightblue; */
+  background-image: url(/assets/cork1-DRaCtEvs.jpeg);
   background-repeat: repeat;
 }
 
@@ -140,12 +141,16 @@ variables */
 }
 
 .preview .projectImage {
-  width: 100%;
+  /* width: 100%; */
   aspect-ratio: 1 / 1;
   outline: solid 1px pink;
-  background-position: top center;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
   position: relative;
+}
+
+.projectImage {
+  height: 50vh;
 }
 
 .preview .card__pin {

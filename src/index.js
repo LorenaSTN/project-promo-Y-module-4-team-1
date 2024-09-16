@@ -84,6 +84,8 @@ server.get("/project/:idProject", async (req, res) => {
     "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor AND projects.idProject = ?";
   const [result] = await connection.query(querySql, [id]);
 
+  console.log(result);
+
   connection.end();
   res.render("project", { project: result[0] });
 });

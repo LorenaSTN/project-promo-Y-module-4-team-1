@@ -99,6 +99,7 @@ function App() {
     }
 
     console.log(project);
+
     fetch("http://localhost:5001/api/project", {
       method: "POST",
       headers: {
@@ -116,6 +117,7 @@ function App() {
         setCardUrl(data.cardURL);
         setError(null); // Resetea el error en caso de éxito
         navigate("/postit");
+        console.log(data.cardURL);
       })
       .catch((error) => {
         console.error("Error de petición al servidor:", error);
