@@ -46,6 +46,7 @@ server.get("/projects/list", async (req, res) => {
 });
 
 server.post("/api/project", async (req, res) => {
+  console.log("funciona post?");
   const connection = await getDBConnection();
 
   const authorQuery =
@@ -73,7 +74,7 @@ server.post("/api/project", async (req, res) => {
   connection.end();
   res.json({
     success: true,
-    cardUrl: `http://localhost/5001/project/${projectsResult.insertId}`,
+    cardURL: `http://localhost:5001/project/${projectsResult.insertId}`,
   });
 });
 
