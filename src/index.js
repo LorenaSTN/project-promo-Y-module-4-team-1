@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
 //Crear el servidor.
 const server = express();
@@ -25,9 +26,9 @@ server.set("view engine", "ejs");
 
 //Arrancar en un puerto:
 
-const serverPort = process.env.PORT;
+const serverPort = 5001;
 server.listen(serverPort, () => {
-  console.log(`Server listening at: ${serverPort}`);
+  console.log(`Server listening at: http://localhost:${serverPort}`);
 });
 
 server.get("/projects/list", async (req, res) => {
@@ -73,7 +74,7 @@ server.post("/api/project", async (req, res) => {
   connection.end();
   res.json({
     success: true,
-    cardURL: `${serverPort}/${projectsResult.insertId}`,
+    cardURL: `${process.env.URL}/${projectsResult.insertId}`,
   });
 });
 
