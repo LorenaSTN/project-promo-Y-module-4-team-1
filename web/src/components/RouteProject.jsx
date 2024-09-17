@@ -12,7 +12,7 @@ function RouteProject(props) {
       >
         <div className="card__pin"></div>
       </div>
-      <article className="card">
+      <article className="card route-card">
         <div className="card__pin"></div>
         <div className="card__pin card__pin--right"></div>
         <h2 className="card__projectTitle">

@@ -17,10 +17,10 @@
 
 @media screen and (min-width: 768px) {
   .main {
-    max-width: 980px;
+    max-width: 1280px;
     margin-inline: auto;
     display: grid;
-    grid-template-columns: 6fr 5fr;
+    grid-template-columns: 8fr 8fr;
     gap: 2rem;
   }
 }
@@ -115,6 +115,8 @@
 .route {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   grid-column: span 2;
 }
@@ -122,6 +124,8 @@
 .route .image-project-route {
   background-position: center;
   background-size: 123%;
+  max-width: 750px;
+  max-height: 500px;
 }
 
 .preview .card {
@@ -482,4 +486,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.route-card {
+  max-width: 700px;
+  margin: 0 auto;
 }
