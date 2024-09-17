@@ -74,7 +74,7 @@ server.post("/api/project", async (req, res) => {
   connection.end();
   res.json({
     success: true,
-    cardURL: `${process.env.URL}/${projectsResult.insertId}`,
+    cardURL: `${process.env.URL}/project/${projectsResult.insertId}`,
   });
 });
 
