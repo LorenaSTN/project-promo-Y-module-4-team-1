@@ -9,8 +9,8 @@ const server = express();
 async function getDBConnection() {
   const connection = await mysql.createConnection({
     host: "sql.freedb.tech",
-    user: "freedb_admin_Lorena",
-    password: "U9%9s?K%8aCC6AC",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: "freedb_setProject",
   });
   await connection.connect();
@@ -25,9 +25,9 @@ server.set("view engine", "ejs");
 
 //Arrancar en un puerto:
 
-const serverPort = 5001;
+const serverPort = process.env.PORT;
 server.listen(serverPort, () => {
-  console.log(`Server listening at: http://localhost:${serverPort}`);
+  console.log(`Server listening at: ${serverPort}`);
 });
 
 server.get("/projects/list", async (req, res) => {
@@ -73,7 +73,7 @@ server.post("/api/project", async (req, res) => {
   connection.end();
   res.json({
     success: true,
-    cardURL: `http://localhost:5001/project/${projectsResult.insertId}`,
+    cardURL: `${serverPort}/${projectsResult.insertId}`,
   });
 });
 

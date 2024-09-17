@@ -42,9 +42,11 @@ function App() {
   const [cardUrl, setCardUrl] = useState("");
   const [error, setError] = useState(null);
   const [listProjects, setListProjects] = useState([]);
+  const URL = "https://setproject.onrender.com";
+  const localHost = "http://localhost:5001";
 
   useEffect(() => {
-    fetch("http://localhost:5001/projects/list")
+    fetch(`${URL}/projects/list`)
       .then((response) => response.json())
       .then((data) => {
         setListProjects(data.message);
@@ -103,7 +105,7 @@ function App() {
       return;
     }
 
-    fetch("http://localhost:5001/api/project", {
+    fetch(`${URL}/api/project`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
