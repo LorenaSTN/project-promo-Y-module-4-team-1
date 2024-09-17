@@ -1,5 +1,5 @@
 function RouteProject(props) {
-  console.log(props.listProjects);
+
 
   return (
     <section className="preview route">

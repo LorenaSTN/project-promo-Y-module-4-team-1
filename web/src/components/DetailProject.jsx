@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function DetailProject(props) {
+ 
   return (
     <article className="card card__listprojects">
       <Link className="card__link" to={`/${props.previewProject.name}`}>

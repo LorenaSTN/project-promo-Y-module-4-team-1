@@ -39,8 +39,6 @@ function App() {
     })
   );
 
-  console.log("proyecto", project);
-
   const [cardUrl, setCardUrl] = useState("");
   const [error, setError] = useState(null);
   const [listProjects, setListProjects] = useState([]);
@@ -49,7 +47,6 @@ function App() {
     fetch("http://localhost:5001/projects/list")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setListProjects(data.message);
       });
   }, []);
@@ -106,8 +103,6 @@ function App() {
       return;
     }
 
-    console.log(project);
-
     fetch("http://localhost:5001/api/project", {
       method: "POST",
       headers: {
@@ -125,7 +120,6 @@ function App() {
         setCardUrl(data.cardURL);
         setError(null); // Resetea el error en caso de éxito
         navigate("/postit");
-        console.log(data.cardURL);
       })
       .catch((error) => {
         console.error("Error de petición al servidor:", error);
@@ -138,7 +132,6 @@ function App() {
 
   //BOTON DE RESET
   function handleClickReset() {
-    console.log("click");
     setProject({
       name: "",
       slogan: "",
@@ -157,8 +150,13 @@ function App() {
   const { pathname } = useLocation();
   const routeData = matchPath("/:nameProject", pathname);
   const nameProject = routeData !== null ? routeData.params.nameProject : null;
+
+  const normalizeString = (str) => {
+    return str ? str.trim().toLowerCase() : ""; // Evitar error si str es null o undefined
+  };
+
   const projectSelected = listProjects.find(
-    (proj) => proj.name === nameProject
+    (proj) => normalizeString(proj.name) === normalizeString(nameProject)
   );
 
   return (

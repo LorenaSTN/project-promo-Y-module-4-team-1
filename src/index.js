@@ -24,6 +24,7 @@ server.use(express.json({ limit: "25mb" }));
 server.set("view engine", "ejs");
 
 //Arrancar en un puerto:
+
 const serverPort = 5001;
 server.listen(serverPort, () => {
   console.log(`Server listening at: http://localhost:${serverPort}`);
@@ -37,7 +38,6 @@ server.get("/projects/list", async (req, res) => {
   const [projectsResult] = await connection.query(squlQuery);
 
   connection.end();
-  console.log(projectsResult);
 
   res.status(200).json({
     status: true,
@@ -46,7 +46,6 @@ server.get("/projects/list", async (req, res) => {
 });
 
 server.post("/api/project", async (req, res) => {
-  console.log("funciona post?");
   const connection = await getDBConnection();
 
   const authorQuery =
@@ -70,7 +69,7 @@ server.post("/api/project", async (req, res) => {
     req.body.demo,
     idNewAuthor,
   ]);
-  console.log(authorResult);
+
   connection.end();
   res.json({
     success: true,
@@ -84,8 +83,6 @@ server.get("/project/:idProject", async (req, res) => {
   const querySql =
     "SELECT * FROM projects, author WHERE projects.fk_author = author.idAuthor AND projects.idProject = ?";
   const [result] = await connection.query(querySql, [id]);
-
-  console.log(result);
 
   connection.end();
   res.render("project", { project: result[0] });
