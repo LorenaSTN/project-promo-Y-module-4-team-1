@@ -18,12 +18,20 @@ Este proyecto presenta una aplicación web que permite a la usuaria crear una ta
 
 ## Instalación
 
-Las instrucciones para instalar el proyecto.
+1. Clona este repositorio e instala las dependencias necesarias con los siguientes comandos:
 
 ```bash
-git clone https://github.com/laura-pf/project-promo-Y-module-3-team-1.git
-cd project-promo-Y-module-3-team-1
+git clone https://github.com/LorenaSTN/project-promo-Y-module-4-team-1.git
+cd project-promo-Y-module-4-team-1
 npm install
+```
+
+2. Crea un archivo .env en la raíz del proyecto con la siguiente información:
+
+```bash
+DB_USER=tu_usuario
+DB_PASSWORD=tu_contraseña
+URL=url_con_puerto
 ```
 
 ## Uso
@@ -59,9 +67,46 @@ Este proyecto incluye las siguientes características claves:
     - Al hacer clic en el botón de "Crear Tarjeta" se envía el formulario a un API que devuelve la URL de una web con la tarjeta de visita con la información rellena.
     - Se muestra la URL en un popup para que la usuaria verifique si la tarjeta está bien definida.
 
-3.  **Interfaz de usuaria intuitiva y estética:**
-    - Diseño de interfaz de usuaria basado en el tema de un tablero de corcho donde tradicionalmente se cualgan las grandes ideas.
-    - La interfaz es responsive y se puede utilizar sin problemas en todo tipo de tamaño de panalla.
+3.  **Lista de proyectos creados:**
+
+    - La aplicación proporciona una vista que muestra todos los proyectos creados por la usuaria, organizados de manera clara y accesible.
+    - La usuaria puede seleccionar cualquier proyecto de la lista para ver un detalle completo con toda la información incluida en la tarjeta, facilitando su revisión o actualización.
+
+4.  **Vista de detalle de cada proyecto:**
+    - Cada tarjeta generada tiene una URL única que puede ser compartida fácilmente. Al acceder a esta URL, cualquier persona podrá ver el detalle completo del proyecto, incluyendo toda la información personalizada por la usuaria.
+
+## Endpoints
+
+### Obtener todos los proyectos
+
+`GET /projects/list`
+
+Retorna un listado de todas los proyectos que se han creado.
+
+### Obtener todos los proyectos
+
+`POST /api/project`
+
+Crea una nueva tarjeta de proyecto en la base de datos.
+
+#### Parámetros del cuerpo (JSON)
+
+- name
+- slogan
+- desc
+- technologies
+- image
+- repo
+- demo
+- author
+- job
+- photo
+
+### Obtener un proyecto por su ID
+
+`GET /project/:idProject`
+
+Retorna un proyecto específico según su ID.
 
 ## Contribuir
 
