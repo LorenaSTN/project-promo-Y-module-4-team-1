@@ -1,0 +1,244 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Project API",
+    "description": "API for managing projects and authors",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5001",
+      "description": "Development server"
+    },
+     {
+      "url": "https://setproject.onrender.com",
+      "description": "Production server"
+    }
+
+  ],
+  "paths": {
+    "/projects/list": {
+      "get": {
+        "summary": "List all projects",
+        "description": "Retrieve a list of all projects with their corresponding authors.",
+        "responses": {
+          "200": {
+            "description": "Operation completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/project": {
+      "post": {
+        "summary": "Create a new project",
+        "description": "Create a new project with author details and return the project URL.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewProjectRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Project created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/{idProject}": {
+      "get": {
+        "summary": "Get project details by ID",
+        "description": "Retrieve details of a project and its author using the project ID.",
+        "parameters": [
+          {
+            "name": "idProject",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the project to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Project": {
+        "type": "object",
+        "properties": {
+          "idProject": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Project Name"
+          },
+          "slogan": {
+            "type": "string",
+            "example": "Project Slogan"
+          },
+          "desc": {
+            "type": "string",
+            "example": "Project description"
+          },
+          "technologies": {
+            "type": "string",
+            "example": "NodeJS, React"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/image.png"
+          },
+          "repo": {
+            "type": "string",
+            "example": "https://github.com/example/project"
+          },
+          "demo": {
+            "type": "string",
+            "example": "https://example.com/demo"
+          },
+          "author": {
+            "$ref": "#/components/schemas/Author"
+          }
+        }
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "idAuthor": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Author Name"
+          },
+          "job": {
+            "type": "string",
+            "example": "Developer"
+          },
+          "photo": {
+            "type": "string",
+            "example": "https://example.com/author_photo.png"
+          }
+        }
+      },
+      "ProjectListResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        }
+      },
+      "NewProjectRequest": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "type": "string",
+            "example": "Author Name"
+          },
+          "job": {
+            "type": "string",
+            "example": "Developer"
+          },
+          "photo": {
+            "type": "string",
+            "example": "https://example.com/author_photo.png"
+          },
+          "name": {
+            "type": "string",
+            "example": "Project Name"
+          },
+          "slogan": {
+            "type": "string",
+            "example": "Project Slogan"
+          },
+          "desc": {
+            "type": "string",
+            "example": "Project description"
+          },
+          "technologies": {
+            "type": "string",
+            "example": "NodeJS, React"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/image.png"
+          },
+          "repo": {
+            "type": "string",
+            "example": "https://github.com/example/project"
+          },
+          "demo": {
+            "type": "string",
+            "example": "https://example.com/demo"
+          }
+        },
+        "required": [
+          "author",
+          "job",
+          "name",
+          "slogan",
+          "desc",
+          "technologies",
+          "repo",
+          "demo"
+        ]
+      },
+      "NewProjectResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "cardURL": {
+            "type": "string",
+            "example": "http://localhost:5001/project/1"
+          }
+        }
+      }
+    }
+  }
+}

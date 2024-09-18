@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
 require("dotenv").config();
+const swaggerConfig = require("./swagger.json");
+const swaggerUI = require("swagger-ui-express");
 
 //Crear el servidor.
 const server = express();
@@ -30,6 +32,9 @@ const serverPort = 5001;
 server.listen(serverPort, () => {
   console.log(`Server listening at: http://localhost:${serverPort}`);
 });
+
+//ENDPOINTS
+server.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerConfig));
 
 server.get("/projects/list", async (req, res) => {
   const connection = await getDBConnection();
